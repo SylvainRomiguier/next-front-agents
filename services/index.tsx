@@ -1,12 +1,14 @@
 import React, { createContext } from "react";
-import { AgentProvider } from "./agentProvider/AgentProvider";
 import { IAgentProvider } from "./agentProvider/IAgentProvider";
+import { MockAgentProvider } from "./agentProvider/MockAgentProvider";
 
 export interface IServices {
   agentProvider: IAgentProvider;
 }
 
-const servicesContext = createContext<IServices | null>(null);
+export const servicesContext = createContext<IServices>({
+  agentProvider: new MockAgentProvider(),
+});
 
 const Services: React.FC<{
   createProvidedServices: () => IServices;
