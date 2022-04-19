@@ -1,7 +1,8 @@
+import { Wrap } from "@chakra-ui/react";
 import React from "react";
 
 const ItemsList: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <div style={{ display: "flex", flexWrap: "wrap" }}>{children}</div>;
+  return <Wrap>{children}</Wrap>;
 };
 
 export default ItemsList;

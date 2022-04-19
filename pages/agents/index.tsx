@@ -1,7 +1,10 @@
+import { SlideFade } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { servicesContext } from "../../services";
 import { ProvidedAgent } from "../../services/agentProvider/IAgentProvider";
+import AgentCard from "../../UI/AgentCard";
+import ItemsList from "../../UI/ItemsList";
 
 const Agents: NextPage = () => {
   const [agents, setAgents] = useState<ProvidedAgent[]>([]);
@@ -15,7 +18,15 @@ const Agents: NextPage = () => {
     loadAgents();
   }, [loadAgents]);
 
-  return <div>{JSON.stringify(agents)}</div>;
+  return (
+    <ItemsList>
+      {agents.map((agent, index) => (
+        <SlideFade key={agent.id} offsetY={index * 20} in={true}>
+          <AgentCard agent={agent} />
+        </SlideFade>
+      ))}
+    </ItemsList>
+  );
 };
 
 export default Agents;
