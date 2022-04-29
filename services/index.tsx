@@ -1,13 +1,14 @@
 import React, { createContext } from "react";
+import { UseBoundStore, StoreApi } from "zustand";
 import { IAgentProvider } from "./agentProvider/IAgentProvider";
-import { MockAgentProvider } from "./agentProvider/MockAgentProvider";
+import { mockAgentProvider } from "./agentProvider/MockAgentProvider";
 
 export interface IServices {
-  agentProvider: IAgentProvider;
+  useAgentProvider: UseBoundStore<StoreApi<IAgentProvider>>;
 }
 
 export const servicesContext = createContext<IServices>({
-  agentProvider: new MockAgentProvider(),
+  useAgentProvider: mockAgentProvider,
 });
 
 const Services: React.FC<{

@@ -1,8 +1,13 @@
-import { StarIcon } from "@chakra-ui/icons";
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Button, Image } from "@chakra-ui/react";
 import { ProvidedAgent } from "../services/agentProvider/IAgentProvider";
 
-const AgentCard: React.FC<{ agent: ProvidedAgent }> = ({ agent }) => {
+const AgentCard: React.FC<{
+  agent: ProvidedAgent;
+  onToggleActivation: () => void;
+  onClick: () => void;
+}> = ({ agent, onToggleActivation, onClick }) => {
+  const toggleActivationButtonLabel =
+    agent.status === "Activated" ? "Deactivate" : "Activate";
   return (
     <Box
       display="flex"
@@ -41,16 +46,11 @@ const AgentCard: React.FC<{ agent: ProvidedAgent }> = ({ agent }) => {
           <Box fontWeight="bold">Email</Box>
           <Box>{agent.email}</Box>
         </Box>
-
-        <Box display="flex" mt="2" alignItems="center">
-          {Array(5)
-            .fill("")
-            .map((_, i) => (
-              <StarIcon key={i} color={i < 3 ? "teal.500" : "gray.300"} />
-            ))}
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            15 reviews
-          </Box>
+        <Box d="flex" justifyContent="space-between">
+          <Button onClick={onToggleActivation}>
+            {toggleActivationButtonLabel}
+          </Button>
+          <Button onClick={onClick}>details</Button>
         </Box>
       </Box>
     </Box>

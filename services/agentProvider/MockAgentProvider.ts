@@ -1,16 +1,21 @@
+import create from "zustand";
 import { IAgentProvider, ProvidedAgent } from "./IAgentProvider";
 
-export class MockAgentProvider implements IAgentProvider {
-  getAgentById(id: string): Promise<ProvidedAgent | null> {
+export const mockAgentProvider = create<IAgentProvider>((set) => ({
+  agents: [],
+  toggleActivation: async (activationEndpoint: string) => {
     throw new Error("Method not implemented.");
-  }
-  getAgents(): Promise<ProvidedAgent[]> {
+  },
+  getAgents: async () => {
     throw new Error("Method not implemented.");
-  }
-  createAgent(agent: ProvidedAgent): void {
+  },
+  getAgentById: async (id: string) => {
     throw new Error("Method not implemented.");
-  }
-  updateAgent(agent: ProvidedAgent): void {
+  },
+  createAgent: async (agent: ProvidedAgent) => {
     throw new Error("Method not implemented.");
-  }
-}
+  },
+  updateAgent: async (agent: ProvidedAgent) => {
+    throw new Error("Method not implemented.");
+  },
+}));

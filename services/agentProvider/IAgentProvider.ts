@@ -1,8 +1,10 @@
 export interface IAgentProvider {
-  getAgentById(id: string): Promise<ProvidedAgent | null>;
-  getAgents(): Promise<ProvidedAgent[]>;
-  createAgent(agent: ProvidedAgent): void;
-  updateAgent(agent: ProvidedAgent): void;
+  agents: ProvidedAgent[];
+  getAgentById(detailsUrl:string): Promise<ProvidedAgent | null>;
+  getAgents(): Promise<void>;
+  createAgent(agent: ProvidedAgent): Promise<ProvidedAgent>;
+  updateAgent(detailsUrl:string, agent: ProvidedAgent): Promise<ProvidedAgent>;
+  toggleActivation(activationUrl: string): Promise<void>;
 }
 
 export class ProvidedAgent {
@@ -13,4 +15,7 @@ export class ProvidedAgent {
   phone!: string;
   email!: string;
   photoUrl!: string;
+  status!:string;
+  activationUrl!:string;
+  detailsUrl!:string;
 }
